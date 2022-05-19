@@ -54,5 +54,6 @@ form button {
     font-family: 'Courier New', Courier, monospace;
     color: rgb(227, 209, 9);
     background-color: rgba(210, 20, 20, 0.445);
-    animation: bg-red 2s 5;
+    padding-left: 10px;
+    border-radius: 5px;
 }

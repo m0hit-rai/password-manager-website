@@ -49,6 +49,7 @@ function Register(props) {
                 onChange={(e) => setPassword(e.target.value)}
             ></input>
             <button
+                disabled={password === ""}
                 onClick={register}
             >Submit</button>
         </form>

@@ -48,15 +48,16 @@ app.post('/login', async (req, res) => {
             res.status(404).send("Username not found!");
         }
         else {
-            bcrypt.compare(doc.password, req.body.password, (err, result) => {
+            bcrypt.compare(req.body.password, doc.password, (err, result) => {
                 if (err) {
                     res.status(500).send("Some error occured!");
                     throw err;
                 }
-                else if (result === false)
-                    res.status(401).send("Wrong Password");
-                else
+
+                if (result)
                     res.send("User Logged in");
+                else
+                    res.status(401).send("Wrong Password!");
             });
         }
     });
