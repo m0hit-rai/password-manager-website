@@ -11,7 +11,7 @@ function ProfileView(props) {
 
     useEffect(() => {
         getAllData();
-    })
+    },[]);
 
     const addNewPass = (event) => {
         event.preventDefault();
