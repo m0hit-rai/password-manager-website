@@ -1,0 +1,58 @@
+.firstPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 35px;
+}
+
+.enter-credentials {
+    background-color: rgba(218, 234, 248, 0.47);
+    /* margin: 50px; */
+    padding: 100px;
+    padding-top: 0px;
+    border-radius: 30px;
+    align-items: center;
+    font-family: cursive;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input,
+button {
+    border: none;
+    height: 50px;
+    width: 250px;
+    border-radius: 10px;
+    padding-left: 20px;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+form button {
+    padding: 0px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.small-button {
+    background: none;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.error {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(227, 209, 9);
+    background-color: rgba(210, 20, 20, 0.445);
+    animation: bg-red 2s 5;
+}
