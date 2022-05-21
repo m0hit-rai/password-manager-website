@@ -35,7 +35,7 @@ function Register(props) {
     return <div className="enter-credentials">
         <h1>Register</h1>
         <div className="error">{errorStr}</div>
-        <form>
+        <form className="credential-form">
             <input
                 type="text"
                 placeholder='username'

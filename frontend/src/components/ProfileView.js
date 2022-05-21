@@ -11,7 +11,7 @@ function ProfileView(props) {
 
     useEffect(() => {
         getAllData();
-    },[]);
+    }, []);
 
     const addNewPass = (event) => {
         event.preventDefault();
@@ -56,9 +56,23 @@ function ProfileView(props) {
         })
 
     };
+
+    const deletePass = (event) => {
+        event.preventDefault();
+        // console.log(event.currentTarget.parentNode.getAttribute("data-key"));
+        axios({
+            method: "get",
+            url: `http://localhost:33845/deleteData/${event.currentTarget.parentNode.getAttribute("data-key")}`
+        }).then(res => {
+            console.log(res);
+            getAllData();
+        }).catch(err => {
+            console.log(err);
+        })
+    }
     return <>
         <h1>Hello user {userName} !</h1>
-        <form>
+        <form className="add-pass">
             <input
                 type="text"
                 placeholder='site'
@@ -91,26 +105,37 @@ function ProfileView(props) {
                 onClick={getAllData}
             >getAllData</button> */}
         </form>
-        {data.map((element) => {
-            return <div>
-                <div>{element.site}</div>
-                <input
-                    type="text"
-                    value={element.siteUsername}
-                >
-                </input>
-                <input
-                    type="text"
-                    value={element.sitePassword}
-                >
-                </input>
-                <input
-                    type="text"
-                    value={element.note}
-                >
-                </input>
-            </div>
-        })}
+        <div className="user-data">
+            {data.map((element) => {
+                return <div
+                    key={element.key}
+                    data-key={element.key}
+                    className="secret-data">
+                    <h3>{element.site}</h3>
+                    <img
+                        alt="delete password"
+                        src="https://img.icons8.com/wired/64/000000/filled-trash.png"
+                        onClick={deletePass}
+                    // style={"width" = "100px"; "height" = "100px"}
+                    />
+                    <input
+                        type="text"
+                        value={element.siteUsername}
+                    >
+                    </input>
+                    <input
+                        type="text"
+                        value={element.sitePassword}
+                    >
+                    </input>
+                    <input
+                        type="text"
+                        value={element.note}
+                    >
+                    </input>
+                </div>
+            })}
+        </div>
     </>;
 }
 

@@ -20,13 +20,23 @@
     font-family: cursive;
 }
 
-form {
+.credential-form {
     display: flex;
     flex-direction: column;
 }
 
-form input,
-button {
+form input {
+    border: none;
+    height: 50px;
+    width: 250px;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+form button {
     border: none;
     height: 50px;
     width: 250px;
@@ -34,15 +44,13 @@ button {
     padding-left: 20px;
     font-size: 20px;
     margin-top: 15px;
-}
-
-form button {
     padding: 0px;
     margin: 10px;
     cursor: pointer;
 }
 
 .small-button {
+    border: none;
     background: none;
     width: fit-content;
     height: fit-content;
@@ -56,4 +64,62 @@ form button {
     background-color: rgba(210, 20, 20, 0.445);
     padding-left: 10px;
     border-radius: 5px;
+}
+
+.add-pass {
+    background-color: rgba(218, 234, 248, 0.47);
+    /* margin: 50px; */
+    /* width: 1500px; */
+    padding: 25px;
+    border-radius: 30px;
+    align-items: center;
+    font-family: cursive;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.add-pass input {
+    flex: 1 0 21%;
+    margin: 5px;
+}
+
+.user-data {
+    background-color: rgba(218, 234, 248, 0.47);
+    /* margin: 50px; */
+    margin-top: 100px;
+    padding: 25px;
+    border-radius: 30px;
+    align-items: center;
+    font-family: cursive;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.user-data h3 {
+    margin-left: 50px;
+}
+
+.user-data input {
+    border: none;
+    height: 50px;
+    width: 250px;
+    margin-left: 30px;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.secret-data {
+    display: block;
+}
+
+.user-data img {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
 }

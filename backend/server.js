@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const credentials = require('./mongo-password');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express();
 
 const uri = `mongodb+srv://${credentials.username}:${credentials.pass}@pass-manage.6z6kk.mongodb.net/?retryWrites=true&w=majority`;
@@ -116,15 +116,7 @@ app.get('/user/:username', async (req, res) => {
     // res.status(404).send("Did it motherfudger!")
     const query = { username: req.params.username };
     const options = {
-        sort: { site: 1 },
-        projection: {
-            _id: 0,
-            username: 1,
-            site: 1,
-            siteUsername: 1,
-            sitePassword: 1,
-            note: 1,
-        }
+        sort: { site: 1 }
     }
 
     try {
@@ -132,14 +124,39 @@ app.get('/user/:username', async (req, res) => {
         let data = [];
 
         await cursor.forEach(element => {
-            data.push(element);
-            // console.log(element);
+            const { _id, username, site, siteUsername, sitePassword, note } = element;
+            const newData = {
+                key: _id,
+                username: username,
+                site: site,
+                siteUsername: siteUsername,
+                sitePassword: sitePassword,
+                note: note,
+            }
+            data.push(newData);
+            // console.log(newData);
         });
 
         res.send(data);
     }
     catch (error) {
+        console.log(error);
         res.status(500).send("Error occurred");
+    }
+});
+
+
+app.get('/deleteData/:passId', async (req, res) => {
+    const query = { _id: new ObjectId(`${req.params.passId}`) };
+    console.log(query);
+    try {
+        let result = await user_data_collection.deleteOne(query);
+        console.log(result);
+        res.send(`Deleted Sucessfully`);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).send(`Error occurred`)
     }
 });
 
